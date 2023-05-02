@@ -173,8 +173,14 @@ RS:
 
 ## Unit Testing:
 - RUNNING mvn test
+  ![test capture](misc/images/test1.jpg)
+
+  ![test capture](misc/images/test2.jpg)
+
 
 - RUNNING mvn surefire-report:report
+  ![test capture](misc/images/test-report.jpg)
 
 ## API Documentation:
 URL: {{service-url}}//swagger-ui/
+![test capture](misc/images/swagger.jpg)

@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "72641a03-9917-4045-ab5d-c04c23235697",
+		"name": "ONEBOX-CHALLENGE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21245950"
+	},
+	"item": [
+		{
+			"name": "GET ALL CARTS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/carts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET NEW CART",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/carts/new",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE CART BY ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/carts/3c64554c-cf59-4e58-9786-9efc553c4e10",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"3c64554c-cf59-4e58-9786-9efc553c4e10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CART BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/carts/8b557eba-409a-4990-b817-99f6e3fe711b",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"8b557eba-409a-4990-b817-99f6e3fe711b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATES CART PRODUCTS",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 4,\r\n        \"description\":\"A new product description\",\r\n        \"amount\":12.00\r\n    },\r\n    {\r\n        \"id\": 5,\r\n        \"description\":\"Another product description\",\r\n        \"amount\": 23.00\r\n    },\r\n    {\r\n        \"id\": 6,\r\n        \"description\": \"One more product description\",\r\n        \"amount\": 4.00\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/carts/1b3496f2-7df8-4b7b-8c10-ec5ce24d3bcb",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"1b3496f2-7df8-4b7b-8c10-ec5ce24d3bcb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
