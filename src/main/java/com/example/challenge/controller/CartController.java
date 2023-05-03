@@ -41,8 +41,9 @@ public class CartController {
             nickname = "getAllCarts"
     )
     @GetMapping
-    public List<CartDTO> getAllCarts() {
-        return domainToDtoConverter.convert(cartService.getAllCarts());
+    public ResponseEntity<List<CartDTO>> getAllCarts() {
+        List<CartDTO> dtoList = domainToDtoConverter.convert(cartService.getAllCarts());
+        return ResponseEntity.ok(dtoList);
     }
 
     @ApiOperation(
@@ -52,8 +53,9 @@ public class CartController {
             nickname = "getNewCart"
     )
     @GetMapping(path = "new")
-    public CartDTO getNewCart() {
-        return domainToDtoConverter.convert(cartService.getNewCart());
+    public ResponseEntity<CartDTO> getNewCart() {
+        CartDTO dto = domainToDtoConverter.convert(cartService.getNewCart());
+        return ResponseEntity.ok(dto);
     }
 
     @ApiOperation(
@@ -63,7 +65,7 @@ public class CartController {
             nickname = "getCartById"
     )
     @GetMapping(path = "{id}")
-    public ResponseEntity<?> getCartById(@PathVariable("id") String id){
+    public ResponseEntity<CartDTO> getCartById(@PathVariable("id") String id){
 
         CartDTO dto = domainToDtoConverter.convert(cartService.getCartByIdAndUpdatesExpiration(id));
         return ResponseEntity.ok(dto);
@@ -75,7 +77,7 @@ public class CartController {
             response = CartDTO.class,
             nickname = "updateCart")
     @PutMapping(path = "{id}")
-    public ResponseEntity<?> updateCart(
+    public ResponseEntity<CartDTO> updateCart(
             @PathVariable("id") String id,
             @RequestBody @Valid ProductListUpdateDTO productListUpdateDTO
     ){
@@ -90,7 +92,7 @@ public class CartController {
             nickname = "deleteCart"
     )
     @DeleteMapping(path = "{id}")
-    public ResponseEntity<?> deleteCart( @PathVariable("id") String id ){
+    public ResponseEntity<Void> deleteCart( @PathVariable("id") String id ){
 
         cartService.deleteCart(id);
         return ResponseEntity.ok().build();

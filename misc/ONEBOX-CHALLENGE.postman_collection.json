@@ -74,7 +74,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/carts/8b557eba-409a-4990-b817-99f6e3fe711b",
+					"raw": "localhost:8080/api/v1/carts/7b66c276-e420-4fc8-bd5e-798d598cb84e",
 					"host": [
 						"localhost"
 					],
@@ -83,7 +83,7 @@
 						"api",
 						"v1",
 						"carts",
-						"8b557eba-409a-4990-b817-99f6e3fe711b"
+						"7b66c276-e420-4fc8-bd5e-798d598cb84e"
 					]
 				}
 			},
@@ -96,7 +96,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"id\": 4,\r\n        \"description\":\"A new product description\",\r\n        \"amount\":12.00\r\n    },\r\n    {\r\n        \"id\": 5,\r\n        \"description\":\"Another product description\",\r\n        \"amount\": 23.00\r\n    },\r\n    {\r\n        \"id\": 6,\r\n        \"description\": \"One more product description\",\r\n        \"amount\": 4.00\r\n    }\r\n]",
+					"raw": "{\r\n    \"productList\": [\r\n        {\r\n            \"id\": 1,\r\n            \"description\":\"A new product description\",\r\n            \"amount\":12.00\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"description\":\"A description\",\r\n            \"amount\":22.00\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -104,7 +104,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/carts/1b3496f2-7df8-4b7b-8c10-ec5ce24d3bcb",
+					"raw": "localhost:8080/api/v1/carts/7b66c276-e420-4fc8-bd5e-798d598cb84e",
 					"host": [
 						"localhost"
 					],
@@ -113,7 +113,7 @@
 						"api",
 						"v1",
 						"carts",
-						"1b3496f2-7df8-4b7b-8c10-ec5ce24d3bcb"
+						"7b66c276-e420-4fc8-bd5e-798d598cb84e"
 					]
 				}
 			},
