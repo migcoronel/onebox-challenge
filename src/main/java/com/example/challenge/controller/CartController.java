@@ -1,8 +1,11 @@
 package com.example.challenge.controller;
 
 
+import com.example.challenge.DTO.CartDTO;
+import com.example.challenge.DTO.ProductListUpdateDTO;
+import com.example.challenge.converter.DomainToDtoConverter;
+import com.example.challenge.converter.DtoToDomainConverter;
 import com.example.challenge.entity.Cart;
-import com.example.challenge.entity.Product;
 import com.example.challenge.service.CartService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,59 +29,59 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
+    @Autowired
+    private DtoToDomainConverter dtoToDomainConverter;
+    @Autowired
+    private DomainToDtoConverter domainToDtoConverter;
 
     @ApiOperation(
             value = "Gets all carts",
-            response = Cart.class,
+            response = CartDTO.class,
             responseContainer = "List",
             nickname = "getAllCarts"
     )
     @GetMapping
-    public List<Cart> getAllCarts() {
-        return cartService.getAllCarts();
+    public List<CartDTO> getAllCarts() {
+        return domainToDtoConverter.convert(cartService.getAllCarts());
     }
 
     @ApiOperation(
             value = "Gets new cart",
             notes = "Gets new cart cart with an expiration time of 10 minutes",
-            response = Cart.class,
+            response = CartDTO.class,
             nickname = "getNewCart"
     )
     @GetMapping(path = "new")
-    public Cart getNewCart() {
-        return cartService.getNewCart();
+    public CartDTO getNewCart() {
+        return domainToDtoConverter.convert(cartService.getNewCart());
     }
 
     @ApiOperation(
             value = "Gets a cart",
             notes = "Gets a cart by its id",
-            response = Cart.class,
+            response = CartDTO.class,
             nickname = "getCartById"
     )
     @GetMapping(path = "{id}")
     public ResponseEntity<?> getCartById(@PathVariable("id") String id){
-        try{
-            return ResponseEntity.ok( cartService.getCartByIdAndUpdatesExpiration(id) );
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+
+        CartDTO dto = domainToDtoConverter.convert(cartService.getCartByIdAndUpdatesExpiration(id));
+        return ResponseEntity.ok(dto);
     }
 
     @ApiOperation(
             value = "Updates a cart product list",
             notes = "Updates a cart product list",
-            response = Cart.class,
+            response = CartDTO.class,
             nickname = "updateCart")
     @PutMapping(path = "{id}")
     public ResponseEntity<?> updateCart(
             @PathVariable("id") String id,
-            @RequestBody List<Product> productList
+            @RequestBody @Valid ProductListUpdateDTO productListUpdateDTO
     ){
-        try{
-            return ResponseEntity.ok( cartService.updateCart( id, productList ) );
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        Cart domain = cartService.updateCart(id, dtoToDomainConverter.convert(productListUpdateDTO.getProductList()));
+        CartDTO dto = domainToDtoConverter.convert(domain);
+        return ResponseEntity.ok(dto);
     }
 
     @ApiOperation(
@@ -87,12 +91,9 @@ public class CartController {
     )
     @DeleteMapping(path = "{id}")
     public ResponseEntity<?> deleteCart( @PathVariable("id") String id ){
-        try{
-            cartService.deleteCart(id);
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+
+        cartService.deleteCart(id);
+        return ResponseEntity.ok().build();
     }
 
 
